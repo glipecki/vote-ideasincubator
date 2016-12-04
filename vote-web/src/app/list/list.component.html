@@ -1,0 +1,39 @@
+<div class="container" style="margin-top: 60px;">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <span class="pull-left">
+        <em><a href="#">najpopularniejsze</a></em>
+        | <em><a href="#">najnowsze</a></em>
+      </span>
+      <span class="pull-right">
+        <em><a href="#">wszystkie</a></em>
+        | <em><a href="#">propozycje</a></em>
+        | <em><a href="#">giełda</a></em>
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <hr style="border-bottom: 1px solid #ecf0f1;"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <div *ngFor="let item of items" style="">
+        <div>{{item.title}}</div>
+        <div><em class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, est et vehicula posuere, lectus ipsum fermentum tellus, ac lacinia
+          ante leo eu velit. Nam eleifend et mauris vitae consectetur....</em></div>
+        <div>
+            <span class="pull-right">
+              <a href="#"><i class="fa fa-comments-o"></i> <span>{{item.comments}}</span></a>
+              <a href="#"><i class="fa fa-heart-o"></i> <span *ngIf="item.stars">{{item.stars}}</span></a>
+            </span>
+          <span>
+              <span *ngFor="let tag of item.tags" class="label {{tagClass(tag)}}">{{tag.title}}</span>
+            </span>
+        </div>
+        <hr style="border-bottom: 1px solid #ecf0f1;"/>
+      </div>
+    </div>
+  </div>
+</div>

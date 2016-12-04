@@ -1,0 +1,39 @@
+/**
+ * Bootstrap with bootswatch.
+ */
+$icon-font-path: "../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+//$grid-float-breakpoint: 0; // disable navbar collapsing
+
+@import "~bootswatch/flatly/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootswatch/flatly/bootswatch";
+
+/**
+ * Font Awesome.
+ */
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+
+/**
+ * Global styles.
+ */
+
+/** Normalize Font Awesome icons in nav */
+nav {
+  ul > li .fa {
+    line-height: 0;
+  }
+  ul > li .fa-2x {
+    vertical-align: middle;
+    margin-top: -6px;
+  }
+}
+
+/** Body padding for fixed-top navbar */
+body {
+  padding-top: 70px;
+}
+
+a:hover, a:active, a:focus {
+  text-decoration: none;
+}

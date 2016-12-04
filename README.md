@@ -1,0 +1,5 @@
+- kalendarz
+- notatki do przeszłych
+- maile do głosujących
+- zaproszenia vcal dla głosujących
+- 
