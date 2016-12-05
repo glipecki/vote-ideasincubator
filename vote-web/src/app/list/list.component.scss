@@ -1,9 +1,24 @@
-.label {
-  margin-right: 5px;
+@import "~bootswatch/flatly/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/labels";
+
+.filter-bar {
+  .label {
+    font-size: 90%;
+  }
+  .filter-selected {
+    @include label-variant($label-success-bg);
+    a {
+      color: white;
+    }
+  }
 }
-.filter-option {
-  font-style: italic;
-}
-.filter-selected {
-  font-weight: 600;
+.item {
+  .stars-indicator {
+    margin-left: 8px;
+  }
+  .item-tags {
+    .label {
+      margin-right: 5px;
+    }
+  }
 }

@@ -1,15 +1,15 @@
 <div class="container" style="margin-top: 60px;">
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
+    <div class="col-md-offset-2 col-md-8 filter-bar">
       <span class="pull-left">
-        <span class="filter-option filter-selected"><a href="#">gorące</a></span>
-        | <span class="filter-option"><a href="#">najpopularniejsze</a></span>
-        | <span class="filter-option"><a href="#">najnowsze</a></span>
+        <span class="label filter-selected"><a href="#">gorące</a></span>
+        <span class="label"><a href="#">najpopularniejsze</a></span>
+        <span class="label"><a href="#">najnowsze</a></span>
       </span>
       <span class="pull-right">
-        <span class="filter-option filter-selected"><a href="#">propozycje</a></span>
-        | <span class="filter-option"><a href="#">giełda</a></span>
-        | <span class="filter-option"><a href="#">wszystkie</a></span>
+        <span class="label filter-selected"><a href="#">propozycje</a></span>
+        <span class="label"><a href="#">giełda</a></span>
+        <span class="label"><a href="#">wszystkie</a></span>
       </span>
     </div>
   </div>
@@ -18,23 +18,22 @@
       <hr style="border-bottom: 1px solid #ecf0f1;"/>
     </div>
   </div>
-  <div class="row">
+  <div class="row item" *ngFor="let item of items">
     <div class="col-md-offset-2 col-md-8">
-      <div *ngFor="let item of items" style="">
-        <div>{{item.title}} <em class="text-muted">przez {{item.author}}, {{item.dateSince}}</em></div>
-        <div><em class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas, est et vehicula posuere, lectus ipsum
-          fermentum tellus, ac lacinia ante leo eu velit. Nam eleifend et mauris vitae consectetur....</em></div>
-        <div>
+      <div style="margin-bottom: 5px;">{{item.title}} <em class="text-muted">przez {{item.author}}, {{item.dateSince}}</em></div>
+      <div style=" margin-bottom: 5px;" *ngIf="item.description">
+        <em class="text-muted">{{item.description}}</em>
+      </div>
+      <div>
           <span class="pull-right">
-            <a href="#"><i class="fa fa-comments-o"></i> <span>{{item.comments}}</span></a>
-            <a href="#"><i class="fa fa-heart-o"></i> <span *ngIf="item.stars">{{item.stars}}</span></a>
+            <a class="comments-indicator" href="#"><i class="fa fa-comments-o"></i> <span>{{item.comments || 0}}</span></a>
+            <a class="stars-indicator" href="#"><i class="fa fa-heart-o"></i> <span>{{item.stars || 0}}</span></a>
           </span>
-          <span>
+        <span class="item-tags">
             <span *ngFor="let tag of item.tags" class="label {{tagClass(tag)}}">{{tag.title}}</span>
           </span>
-        </div>
-        <hr style="border-bottom: 1px solid #ecf0f1;"/>
       </div>
+      <hr style="border-bottom: 1px solid #ecf0f1;"/>
     </div>
   </div>
 </div>
