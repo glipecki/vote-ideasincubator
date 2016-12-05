@@ -2,4 +2,5 @@
 - notatki do przeszłych
 - maile do głosujących
 - zaproszenia vcal dla głosujących
-- 
+- budowanie
+- spring i html5
