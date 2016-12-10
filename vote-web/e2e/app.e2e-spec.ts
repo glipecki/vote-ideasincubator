@@ -1,6 +1,6 @@
-import { VoteWebPage } from './app.po';
+import {VoteWebPage} from './app.po';
 
-describe('vote-web App', function() {
+describe('vote-web App', function () {
   let page: VoteWebPage;
 
   beforeEach(() => {
