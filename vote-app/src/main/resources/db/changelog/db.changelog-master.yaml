@@ -27,12 +27,44 @@ databaseChangeLog:
                   name: details
                   type: text
                   constraints:
+                    snullable: false
+        - createTable:
+            tableName: vote
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
                     nullable: false
         - createTable:
-              tableName: vote
+            tableName: comment
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
         - createTable:
-              tableName: comment
+            tableName: author
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
         - createTable:
-              tableName: author
-        - createTable:
-              tableName: tag
+            tableName: tag
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
