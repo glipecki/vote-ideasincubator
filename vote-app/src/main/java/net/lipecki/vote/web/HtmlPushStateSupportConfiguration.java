@@ -1,4 +1,4 @@
-package net.lipecki.vote;
+package net.lipecki.vote.web;
 
 import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package net.lipecki.vote;
+package net.lipecki.vote.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

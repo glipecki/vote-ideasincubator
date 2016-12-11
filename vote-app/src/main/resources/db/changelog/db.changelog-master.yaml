@@ -4,7 +4,7 @@ databaseChangeLog:
       author: glipecki
       changes:
         - createTable:
-            tableName: votes
+            tableName: item
             columns:
               - column:
                   name: id
@@ -28,3 +28,11 @@ databaseChangeLog:
                   type: text
                   constraints:
                     nullable: false
+        - createTable:
+              tableName: vote
+        - createTable:
+              tableName: comment
+        - createTable:
+              tableName: author
+        - createTable:
+              tableName: tag
