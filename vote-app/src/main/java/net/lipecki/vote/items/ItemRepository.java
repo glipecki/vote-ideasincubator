@@ -1,5 +1,6 @@
 package net.lipecki.vote.items;
 
+import net.lipecki.vote.db.tables.daos.ItemDao;
 import net.lipecki.vote.db.tables.pojos.Item;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Component;
@@ -16,18 +17,22 @@ public class ItemRepository {
 
     private final DSLContext dsl;
 
-    public ItemRepository(final DSLContext dsl) {
+    private final ItemDao itemDao;
+
+    public ItemRepository(final DSLContext dsl, final ItemDao itemDao) {
         this.dsl = dsl;
+        this.itemDao = itemDao;
     }
 
-    public List<ItemSummaryAggregate> findItemSummaries() {
-        final List<Item> items = dsl.select()
+    public List<ItemAggregate> findAll() {
+        return dsl
+                .select()
                 .from(ITEM)
                 .fetch()
-                .into(Item.class);
-        return items.stream()
+                .into(Item.class)
+                .stream()
                 .map(
-                        item -> ItemSummaryAggregate
+                        item -> ItemAggregate
                                 .builder()
                                 .item(item)
                                 .build()
@@ -35,8 +40,8 @@ public class ItemRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<ItemAggregate> findItem() {
-        return null;
+    public void addItem(final Item item) {
+        itemDao.insert(item);
     }
 
 }

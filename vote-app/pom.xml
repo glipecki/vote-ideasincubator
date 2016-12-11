@@ -138,6 +138,7 @@
                                     <immutablePojos>true</immutablePojos>
                                     <springAnnotations>true</springAnnotations>
                                     <fluentSetters>true</fluentSetters>
+                                    <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
                                 </generate>
                                 <database>
                                     <name>org.jooq.util.h2.H2Database</name>

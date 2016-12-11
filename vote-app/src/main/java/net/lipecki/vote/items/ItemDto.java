@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemSummaryDto {
+public class ItemDto {
 
     private Integer id;
 
     private String title;
 
-    private String type;
-
     private String details;
+
+    private String type;
 
 }
