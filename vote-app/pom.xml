@@ -131,6 +131,14 @@
                                 <password></password>
                             </jdbc>
                             <generator>
+                                <generate>
+                                    <interfaces>false</interfaces>
+                                    <daos>true</daos>
+                                    <pojos>true</pojos>
+                                    <immutablePojos>true</immutablePojos>
+                                    <springAnnotations>true</springAnnotations>
+                                    <fluentSetters>true</fluentSetters>
+                                </generate>
                                 <database>
                                     <name>org.jooq.util.h2.H2Database</name>
                                     <includes>.*</includes>
