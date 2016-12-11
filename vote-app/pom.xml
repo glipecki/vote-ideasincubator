@@ -14,6 +14,7 @@
 
     <properties>
         <tmpDbPath>${project.build.directory}/tmp-db</tmpDbPath>
+        <jooq.version>3.8.6</jooq.version>
     </properties>
 
     <dependencies>
@@ -60,7 +61,7 @@
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq</artifactId>
-            <version>3.8.6</version>
+            <version>${jooq.version}</version>
         </dependency>
 
         <!-- utils -->
@@ -80,10 +81,15 @@
 
     <build>
         <plugins>
+            <!--
+                order of liquibase-maven-plugin and jooq-codegen-maven is important,
+                both operate in same lifecycle phase and we need to populate liguibase
+                schema before jOOQ code generation
+            -->
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${liquibase.version}</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
@@ -110,7 +116,7 @@
             <plugin>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
-                <version>3.8.6</version>
+                <version>${jooq.version}</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>

@@ -8,9 +8,6 @@ import org.jooq.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author gregorry
- */
 @RestController
 @Slf4j
 public class GreetingController {
