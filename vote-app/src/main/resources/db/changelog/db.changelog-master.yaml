@@ -29,7 +29,7 @@ databaseChangeLog:
                   constraints:
                     snullable: false
         - createTable:
-            tableName: vote
+            tableName: items
             columns:
               - column:
                   name: id

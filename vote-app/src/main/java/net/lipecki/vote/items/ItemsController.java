@@ -1,5 +1,6 @@
 package net.lipecki.vote.items;
 
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +20,19 @@ public class ItemsController {
     }
 
     @GetMapping({"", "/"})
-    public List<String> findAllSummaries() {
-        return itemRepository.findAllSummaries();
+    public List<ItemSummaryDto> findAllSummaries() {
+        log.debug("User request for all item summaries");
+        return itemRepository.findItemSummaries()
+                .stream()
+                .map(
+                        itemAggregate -> ItemSummaryDto
+                                .builder()
+                                .title(itemAggregate.getItem().getTitle())
+                                .type(itemAggregate.getItem().getType())
+                                .details(itemAggregate.getItem().getDetails())
+                                .build()
+                )
+                .collect(Collectors.toList());
     }
 
 }
