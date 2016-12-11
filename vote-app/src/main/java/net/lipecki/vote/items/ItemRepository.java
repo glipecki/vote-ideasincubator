@@ -24,12 +24,16 @@ public class ItemRepository {
         this.itemDao = itemDao;
     }
 
+    public ItemAggregate findById(final String id) {
+        final Item item = dsl.select().from(ITEM).fetchOne().into(Item.class);
+        return ItemAggregate.builder()
+                .item(item)
+                .build();
+    }
+
     public List<ItemAggregate> findAll() {
         return dsl
-                .select()
-                .from(ITEM)
-                .fetch()
-                .into(Item.class)
+                .select().from(ITEM).fetch().into(Item.class)
                 .stream()
                 .map(
                         item -> ItemAggregate
@@ -40,8 +44,12 @@ public class ItemRepository {
                 .collect(Collectors.toList());
     }
 
-    public void addItem(final Item item) {
-        itemDao.insert(item);
+    public Item addItem(final Item item) {
+        return dsl.insertInto(ITEM, ITEM.TITLE, ITEM.TYPE, ITEM.DETAILS)
+                .values(item.getTitle(), item.getType(), item.getDetails())
+                .returning()
+                .fetchOne()
+                .into(Item.class);
     }
 
 }

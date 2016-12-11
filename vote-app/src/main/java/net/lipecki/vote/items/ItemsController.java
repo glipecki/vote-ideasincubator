@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import net.lipecki.vote.db.tables.pojos.Item;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,11 +24,9 @@ public class ItemsController {
         this.itemRepository = itemRepository;
     }
 
-    @PostMapping({"", "/"})
-    public ItemDto addItem(@RequestBody final ItemDto itemDto) {
-        log.info("User request to add new item [item={}]", itemDto);
-        itemRepository.addItem(new Item(null, itemDto.getTitle(), itemDto.getType(), itemDto.getDetails()));
-        return itemDto;
+    @GetMapping({"/{id}"})
+    public ItemDto getItem(@PathVariable final String id) {
+        return convert(itemRepository.findById(id));
     }
 
     @GetMapping({"", "/"})
@@ -35,16 +34,30 @@ public class ItemsController {
         log.debug("User request for all item summaries");
         return itemRepository.findAll()
                 .stream()
-                .map(
-                        itemAggregate -> ItemDto
-                                .builder()
-                                .id(itemAggregate.getItem().getId())
-                                .title(itemAggregate.getItem().getTitle())
-                                .type(itemAggregate.getItem().getType())
-                                .details(itemAggregate.getItem().getDetails())
-                                .build()
-                )
+                .map(itemAggregate -> convert(itemAggregate))
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping({"", "/"})
+    public ItemDto addItem(@RequestBody final ItemDto itemDto) {
+        log.info("User request to add new item [item={}]", itemDto);
+        final Item item = itemRepository.addItem(new Item(null, itemDto.getTitle(), itemDto.getType(), itemDto.getDetails()));
+        return ItemDto.builder()
+                .id(item.getId())
+                .type(item.getType())
+                .title(item.getTitle())
+                .details(item.getDetails())
+                .build();
+    }
+
+    private ItemDto convert(final ItemAggregate itemAggregate) {
+        return ItemDto
+                .builder()
+                .id(itemAggregate.getItem().getId())
+                .title(itemAggregate.getItem().getTitle())
+                .type(itemAggregate.getItem().getType())
+                .details(itemAggregate.getItem().getDetails())
+                .build();
     }
 
 }

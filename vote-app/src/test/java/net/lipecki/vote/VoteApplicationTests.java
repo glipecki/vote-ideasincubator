@@ -57,12 +57,16 @@ public class VoteApplicationTests {
         }
     }
 
-    protected ResultActions performPost(final String resource, final Object object) throws Exception {
-        return mockMvc().perform(
-                post(resource)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(toJson(object))
-        );
+    protected ResultActions performPost(final String resource, final Object object) {
+        try {
+            return mockMvc().perform(
+                    post(resource)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(toJson(object))
+            );
+        } catch (final Exception e) {
+            throw new TestException("Can't perform POST request", e);
+        }
     }
 
     protected <T> T performGet(final String resource, final Class<T> aClass) {

@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @Slf4j
-public class CreatingItemsItTest extends VoteApplicationTests {
+public class CreateItemItTest extends VoteApplicationTests {
 
     @Test
     public void itemAddedToList() throws Exception {
