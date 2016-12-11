@@ -16,6 +16,10 @@ import static org.assertj.core.api.Assertions.*;
 @Slf4j
 public class VoteApplicationTests {
 
+	public VoteApplicationTests() {
+		System.setProperty("org.jooq.no-logo", "true");
+	}
+
 	@Test
 	public void contextLoads() {
         assertThat(voteApplication).isNotNull();

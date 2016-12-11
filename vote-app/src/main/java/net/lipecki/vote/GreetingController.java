@@ -8,8 +8,6 @@ import org.jooq.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-
 /**
  * @author gregorry
  */
@@ -28,14 +26,6 @@ public class GreetingController {
         final Result<Record> votes = create.select().from(Votes.VOTES).fetch();
         log.debug("Votes:\n{}", votes);
         return "Welcome!";
-    }
-
-
-    @PostConstruct
-    public void putSomData() {
-        create.insertInto(Votes.VOTES, Votes.VOTES.TITLE, Votes.VOTES.TYPE, Votes.VOTES.DETAILS)
-                .values("Sample title " + System.currentTimeMillis(), "proposal", "details")
-                .execute();
     }
 
 }
