@@ -1,15 +1,6 @@
 ## development
 
-Wymagane parametry do lokalnego uruchomienia:
-- app.db.path - ścieżka do plikowej bazy h2
-
-Przykładowo
+```bash
+curl -c cookies -b cookies -X POST http://localhost:8080/api/login
+curl -c cookies -b cookies -X GET http://localhost:8080/api/items
 ```
---app.db.path=~/dev/projects/vote-ideasincubator/dev-db/vote-app
-```
-
-## roadmap
-- kalendarz
-- notatki do przeszłych
-- maile do głosujących
-- zaproszenia vcal dla głosujących

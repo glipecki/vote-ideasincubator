@@ -4,14 +4,15 @@ import lombok.extern.slf4j.Slf4j;
 import net.lipecki.vote.VoteApplicationTests;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.Assertions.*;
 
 @Slf4j
 public class GetItemItTest extends VoteApplicationTests {
 
     @Test
     public void itemDetailsAvailable() throws Exception {
+        system().login();
+
         // given
         final ItemDto itemToAdd = ItemDto
                 .builder()
@@ -19,17 +20,10 @@ public class GetItemItTest extends VoteApplicationTests {
                 .details("details")
                 .type("type")
                 .build();
+        final ItemDto item = system().addItem(itemToAdd);
 
         // when
-        final ItemDto createdItem = fromJson(
-                performPost(ItemsController.RESOURCE, itemToAdd)
-                        .andExpect(status().isOk())
-                        .andReturn()
-                        .getResponse()
-                        .getContentAsString(),
-                ItemDto.class
-        );
-        final ItemDto result = performGet(ItemsController.RESOURCE + "/" + createdItem.getId(), ItemDto.class);
+        final ItemDto result = system().getItem(item.getId());
 
         // then
         assertThat(result.getTitle()).isEqualTo(itemToAdd.getTitle());

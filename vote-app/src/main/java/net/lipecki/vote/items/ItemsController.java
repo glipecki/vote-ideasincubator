@@ -1,22 +1,19 @@
 package net.lipecki.vote.items;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import net.lipecki.vote.db.tables.pojos.Item;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import net.lipecki.vote.web.ApiConstants;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(ItemsController.RESOURCE)
 @Slf4j
 public class ItemsController {
 
-    public static final String RESOURCE = "/items";
+    public static final String RESOURCE = ApiConstants.API + "/items";
 
     private final ItemRepository itemRepository;
 
