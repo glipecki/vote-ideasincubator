@@ -38,7 +38,7 @@ public class JwtCookieFilter extends GenericFilterBean {
 				);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			} catch (final Exception ex) {
-				response.addCookie(deleteTokenCookie());
+				deleteTokenCookie(response);
 				SecurityContextHolder.clearContext();
 				return;
 			}
@@ -46,10 +46,10 @@ public class JwtCookieFilter extends GenericFilterBean {
 		chain.doFilter(request, response);
 	}
 
-	private Cookie deleteTokenCookie() {
+	private void deleteTokenCookie(final HttpServletResponse response) {
 		final Cookie removeCookie = new Cookie("token", null);
 		removeCookie.setMaxAge(0);
-		return removeCookie;
+		response.addCookie(removeCookie);
 	}
 
 	private AuthenticationManager authenticationManager;
